@@ -1,0 +1,30 @@
+import { DynamicModule, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import { ApplicationConfig, HttpAdapterHost } from '@nestjs/core';
+import { ApolloServerBase } from 'apollo-server-core';
+import { GraphQLTypesLoader } from '@nestjs/graphql';
+import { GraphQLFactory } from '@nestjs/graphql';
+import { GqlModuleAsyncOptions, GqlModuleOptions } from '@nestjs/graphql';
+import { GraphQLFederationFactory } from '@nestjs/graphql';
+import { ApolloDriverConfig } from '@nestjs/apollo';
+export declare class GraphQLFederationModule implements OnModuleInit, OnModuleDestroy {
+    private readonly httpAdapterHost;
+    private readonly options;
+    private readonly graphqlFederationFactory;
+    private readonly graphqlTypesLoader;
+    private readonly graphqlFactory;
+    private readonly applicationConfig;
+    private _apolloServer;
+    get apolloServer(): ApolloServerBase;
+    constructor(httpAdapterHost: HttpAdapterHost, options: ApolloDriverConfig, graphqlFederationFactory: GraphQLFederationFactory, graphqlTypesLoader: GraphQLTypesLoader, graphqlFactory: GraphQLFactory, applicationConfig: ApplicationConfig);
+    static forRoot(options?: GqlModuleOptions): DynamicModule;
+    static forRootAsync(options: GqlModuleAsyncOptions): DynamicModule;
+    private static createAsyncProviders;
+    private static createAsyncOptionsProvider;
+    onModuleInit(): Promise<void>;
+    onModuleDestroy(): Promise<void>;
+    private registerGqlServer;
+    private registerExpress;
+    private registerFastify;
+    private getNormalizedPath;
+    private runExecutorFactoryIfPresent;
+}
